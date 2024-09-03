@@ -67,4 +67,6 @@ enum DefaultAttributeKeys {
   accessoriesType;
 
   String get name => EnumToString.convertToString(this);
+
+  String get iconSvg => defaultAttributeIcons[this.index];
 }
