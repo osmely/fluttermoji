@@ -100,23 +100,53 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class NewPage extends StatelessWidget {
+class NewPage extends StatefulWidget {
   const NewPage({Key? key}) : super(key: key);
 
   @override
+  State<NewPage> createState() => _NewPageState();
+}
+
+class _NewPageState extends State<NewPage> {
+  final defaultAttributeTitles = [
+    "Hairstyle",
+    "Hair Colour",
+    "Outfit",
+    "Outfit Colour",
+    "Eyes",
+    "Eyebrows",
+    "Mouth",
+    "Skin",
+    "Accessories"
+  ];
+
+  final attributes = [
+    DefaultAttributeKeys.topType,
+    DefaultAttributeKeys.hairColor,
+    DefaultAttributeKeys.clotheType,
+    DefaultAttributeKeys.clotheColor,
+    DefaultAttributeKeys.eyeType,
+    DefaultAttributeKeys.eyebrowType,
+    DefaultAttributeKeys.mouthType,
+    DefaultAttributeKeys.skinColor,
+    DefaultAttributeKeys.accessoriesType
+  ];
+
+  late List<String> defaultAttributeIcons;
+
+  late List<String> defaultAttributeKeys;
+
+  @override
+  void initState() {
+    super.initState();
+    FluttermojiFunctions().clearFluttermoji();
+
+    defaultAttributeIcons = attributes.map((e) => e.iconSvg).toList();
+    defaultAttributeKeys = attributes.map((e) => e.name).toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final defaultAttributeTitles = ["Ojos", "Cejas"];
-
-    List<String> defaultAttributeIcons = [
-      "attributeicons/eyes.svg",
-      "attributeicons/eyebrow.svg",
-    ];
-
-    final List<String> defaultAttributeKeys = [
-      DefaultAttributeKeys.eyeType.name,
-      DefaultAttributeKeys.eyebrowType.name,
-    ];
-
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(),

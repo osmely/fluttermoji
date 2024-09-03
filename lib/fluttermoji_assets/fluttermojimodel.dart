@@ -72,11 +72,6 @@ const List<String> FluttermojiStyle = [
 
 const List<String> TopType = [
   'Bald',
-  'Eyepatch',
-  'Hijab',
-  'Turban',
-  'Hat',
-  'I\'m not bald',
   'Flat',
   'from School',
   'Short n waved',

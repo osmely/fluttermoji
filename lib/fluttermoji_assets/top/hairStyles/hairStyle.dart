@@ -14,7 +14,7 @@ class HairStyle {
   };
 
   static String? generateHairStyle(
-      {String hairType = "Eyepatch", String hColor = "Black"}) {
+      {String hairType = "Flat", String hColor = "Black"}) {
     String? colorHex = hairColor[hColor];
 
     Map<String, dynamic> hair = {
