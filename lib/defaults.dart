@@ -1,3 +1,5 @@
+import 'package:enum_to_string/enum_to_string.dart';
+
 /// Default list of icons that are rendered in the bottom row, indicating
 /// the attributes available to modify.
 ///
@@ -37,7 +39,7 @@ const List<String> defaultAttributeTitles = [
 /// attributes and their values in the business logic.
 ///
 /// This aspect is not modifiable by you at any stage of the app.
-const List<String> attributeKeys = [
+const List<String> defaulAttributeKeys = [
   "topType",
   "hairColor",
   "facialHairType",
@@ -50,3 +52,19 @@ const List<String> attributeKeys = [
   "skinColor",
   "accessoriesType",
 ];
+
+enum DefaultAttributeKeys {
+  topType,
+  hairColor,
+  facialHairType,
+  facialHairColor,
+  clotheType,
+  clotheColor,
+  eyeType,
+  eyebrowType,
+  mouthType,
+  skinColor,
+  accessoriesType;
+
+  String get name => EnumToString.convertToString(this);
+}

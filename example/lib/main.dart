@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttermoji/defaults.dart';
 import 'package:fluttermoji/fluttermoji.dart';
 
 void main() {
@@ -103,6 +105,18 @@ class NewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final defaultAttributeTitles = ["Ojos", "Cejas"];
+
+    List<String> defaultAttributeIcons = [
+      "attributeicons/eyes.svg",
+      "attributeicons/eyebrow.svg",
+    ];
+
+    final List<String> defaultAttributeKeys = [
+      DefaultAttributeKeys.eyeType.name,
+      DefaultAttributeKeys.eyebrowType.name,
+    ];
+
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(),
@@ -135,6 +149,9 @@ class NewPage extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
                 child: FluttermojiCustomizer(
+                  attributeIcons: defaultAttributeIcons,
+                  attributeTitles: defaultAttributeTitles,
+                  attributeKeys: defaultAttributeKeys,
                   scaffoldWidth: min(600, _width * 0.85),
                   autosave: false,
                   theme: FluttermojiThemeData(

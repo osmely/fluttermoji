@@ -32,22 +32,27 @@ class FluttermojiCustomizer extends StatefulWidget {
     this.scaffoldHeight,
     this.scaffoldWidth,
     FluttermojiThemeData? theme,
+    List<String> attributeKeys = defaulAttributeKeys,
     List<String>? attributeTitles,
     List<String>? attributeIcons,
     this.autosave = true,
-  })  : assert(
-          attributeTitles == null || attributeTitles.length == attributesCount,
-          "List of Attribute Titles must be of length $attributesCount.\n"
+  })  : assert(attributeKeys.isNotEmpty),
+        assert(
+          attributeTitles == null ||
+              attributeTitles.length == attributeKeys.length,
+          "List of Attribute Titles must be of length ${attributeKeys.length}.\n"
           " You need to provide titles for all attributes",
         ),
         assert(
-          attributeIcons == null || attributeIcons.length == attributesCount,
-          "List of Attribute Icon paths must be of length $attributesCount.\n"
+          attributeIcons == null ||
+              attributeIcons.length == attributeKeys.length,
+          "List of Attribute Icon paths must be of length ${attributeKeys.length}.\n"
           " You need to provide icon paths for all attributes",
         ),
         this.theme = theme ?? FluttermojiThemeData.standard,
         this.attributeTitles = attributeTitles ?? defaultAttributeTitles,
         this.attributeIcons = attributeIcons ?? defaultAttributeIcons,
+        this.attributeKeys = attributeKeys,
         super(key: key);
 
   final double? scaffoldHeight;
@@ -78,14 +83,14 @@ class FluttermojiCustomizer extends StatefulWidget {
   /// **Only SVG files are supported as of now.**
   final List<String> attributeIcons;
 
+  final List<String> attributeKeys;
+
   /// Will save the selection automatically everytime the user selects
   /// something when set to `true` .
   ///
   /// If set to `false` you may want to implement a [FluttermojiSaveWidget]
   /// in your app to let users save their selection manually.
   final bool autosave;
-
-  static const int attributesCount = 11;
 
   @override
   _FluttermojiCustomizerState createState() => _FluttermojiCustomizerState();
@@ -95,12 +100,13 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
     with SingleTickerProviderStateMixin {
   late FluttermojiController fluttermojiController;
   late TabController tabController;
-  final attributesCount = 11;
+  late int attributesCount;
   var heightFactor = 0.4, widthFactor = 0.95;
 
   @override
   void initState() {
     super.initState();
+    attributesCount = widget.attributeKeys.length;
 
     var _fluttermojiController;
     Get.put(FluttermojiController());
@@ -158,7 +164,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
             (index) => AttributeItem(
                 iconAsset: widget.attributeIcons[index],
                 title: widget.attributeTitles[index],
-                key: attributeKeys[index]),
+                key: widget.attributeKeys[index]),
             growable: false),
       ),
     );
