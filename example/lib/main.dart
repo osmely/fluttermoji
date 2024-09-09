@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttermoji/defaults.dart';
 import 'package:fluttermoji/fluttermoji.dart';
